@@ -31,6 +31,8 @@
 		EB5783B71AC4BDEA009EEC57 /* UIImage+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5783A41AC4BDEA009EEC57 /* UIImage+Haneke.swift */; };
 		EB5783B81AC4BDEA009EEC57 /* UIImageView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5783A51AC4BDEA009EEC57 /* UIImageView+Haneke.swift */; };
 		EB5783B91AC4BDEA009EEC57 /* UIView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5783A61AC4BDEA009EEC57 /* UIView+Haneke.swift */; };
+		EBF24BA41AC5DBB900BDD7BC /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF24BA31AC5DBB900BDD7BC /* CustomCell.swift */; };
+		EBF24BA61AC5DE8500BDD7BC /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF24BA51AC5DE8500BDD7BC /* UserDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		EB5783A41AC4BDEA009EEC57 /* UIImage+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Haneke.swift"; sourceTree = "<group>"; };
 		EB5783A51AC4BDEA009EEC57 /* UIImageView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Haneke.swift"; sourceTree = "<group>"; };
 		EB5783A61AC4BDEA009EEC57 /* UIView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Haneke.swift"; sourceTree = "<group>"; };
+		EBF24BA31AC5DBB900BDD7BC /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		EBF24BA51AC5DE8500BDD7BC /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 				EB5783551AC4B682009EEC57 /* Images.xcassets */,
 				EB5783571AC4B682009EEC57 /* LaunchScreen.xib */,
 				EB57834C1AC4B682009EEC57 /* Supporting Files */,
+				EBF24BA31AC5DBB900BDD7BC /* CustomCell.swift */,
+				EBF24BA51AC5DE8500BDD7BC /* UserDetailViewController.swift */,
 			);
 			path = testapp;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 				EB5783AA1AC4BDEA009EEC57 /* Data.swift in Sources */,
 				EB5783B41AC4BDEA009EEC57 /* NSHTTPURLResponse+Haneke.swift in Sources */,
 				EB5783AE1AC4BDEA009EEC57 /* Fetcher.swift in Sources */,
+				EBF24BA61AC5DE8500BDD7BC /* UserDetailViewController.swift in Sources */,
 				EB5783B91AC4BDEA009EEC57 /* UIView+Haneke.swift in Sources */,
 				EB5783A71AC4BDEA009EEC57 /* Cache.swift in Sources */,
 				EB5783A81AC4BDEA009EEC57 /* CGSize+Swift.swift in Sources */,
@@ -293,6 +300,7 @@
 				EB5783AD1AC4BDEA009EEC57 /* Fetch.swift in Sources */,
 				EB5783AB1AC4BDEA009EEC57 /* DiskCache.swift in Sources */,
 				EB57834F1AC4B682009EEC57 /* AppDelegate.swift in Sources */,
+				EBF24BA41AC5DBB900BDD7BC /* CustomCell.swift in Sources */,
 				EB5783B81AC4BDEA009EEC57 /* UIImageView+Haneke.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

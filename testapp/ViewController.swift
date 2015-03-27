@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, CustomCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     var users : NSArray!
     
@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         self.users = NSArray()
         self.tableView.rowHeight  = 80
-        
+        self.tableView.delegate = self
         self.downloadUserWithCompletion { () -> Void in
             
         }
@@ -56,46 +56,67 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)  -> UITableViewCell {
         
-        let cellIdentifier = "BasicCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        let cellIdentifier = "CustomCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as CustomCell
         
-//        if cell == nil {
-//            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
-//        }
+        let user = self.users[indexPath.row] as NSDictionary
         
-        let user : NSDictionary = self.users[indexPath.row] as NSDictionary
-        
-        cell.textLabel?.text = user["login"] as NSString
-        cell.detailTextLabel?.text =  user["html_url"] as NSString
-        
-        let avatar = user["avatar_url"] as NSString
-        let avatarUrl = NSURL(string:avatar)
+        cell.usernameLabel.text = user["login"] as NSString
+        cell.userUrlLabel.text  = user["html_url"] as NSString
 
-        cell.imageView?.frame = CGRectMake(0, 0, 100, 100)
-        cell.imageView?.image = UIImage(named:"placeholder")
+        let avatar    = user["avatar_url"] as NSString
+        let avatarUrl = NSURL(string:avatar)
         
-        cell.imageView?.hnk_setImageFromURL(avatarUrl!, placeholder: UIImage(named:"placeholder"), success: { (image) -> () in
-            let avatarImg = image
-            cell.imageView?.image = avatarImg
+        cell.userImageView.image = UIImage(named:"placeholder")
+        
+        cell.userImageView.hnk_setImageFromURL(avatarUrl!, placeholder: UIImage(named:"placeholder"), success: { (image) -> () in
+            cell.userImageView.image = image
         })
         
-//        self.downloadAvatar(avatar, index:indexPath.row, completion: { (index ,image) -> Void in
-//            let avatarImg = image
-//            let row = index
-//
-//            let cellIndexPath = NSIndexPath(forRow: index, inSection: 0)
-//            var visibleCells = self.tableView.indexPathsForVisibleRows()! as NSArray
-//            
-//            if visibleCells.containsObject(cellIndexPath) {
-//                cell?.imageView?.image = avatarImg
-//            } else {
-//                cell?.imageView?.image = UIImage(named:"placeholder")
-//            }
-//        })
+        cell.delegate = self
         
         return cell
     }
     
+    func customCellDidTapOnUser(cell:CustomCell) {
+        let indexPath : NSIndexPath = self.tableView.indexPathForCell(cell)!
+        let user = self.users[indexPath.row] as NSDictionary
+        
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("UserDetailViewController") as UserDetailViewController
+        detailViewController.urlString = user["avatar_url"] as NSString
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+        
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        self.loadImageForVisibleCells()
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            self.loadImageForVisibleCells()
+        }
+    }
+    
+    func loadImageForVisibleCells ()
+    {
+        let visibleCells = self.tableView.visibleCells() as NSArray
+        
+        visibleCells.enumerateObjectsUsingBlock { (object, idx, stop) -> Void in
+            let cell      = object as CustomCell
+
+            let indexPath = self.tableView .indexPathForCell(cell) as NSIndexPath?
+            let userInfo  = self.users.objectAtIndex(indexPath!.row) as NSDictionary
+            let avatar    = userInfo["avatar_url"] as NSString
+            let avatarUrl = NSURL(string:avatar)
+            
+            cell.userImageView.hnk_setImageFromURL(avatarUrl!, placeholder: UIImage(named:"placeholder"), success: { (image) -> () in
+                cell.userImageView.image = image
+            })
+            
+        }
+    }
     
     func downloadAvatar(name:NSString, index:NSInteger, completion: (index : NSInteger ,image : UIImage) -> Void)
     {
@@ -110,7 +131,6 @@ class ViewController: UIViewController, UITableViewDelegate {
             }
         }
     }
-
 }
 
 
