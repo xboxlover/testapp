@@ -56,30 +56,27 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)  -> UITableViewCell {
         
-        let cellIdentifier = "Cell"
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? UITableViewCell
+        let cellIdentifier = "BasicCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as UITableViewCell
         
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
-        }
+//        if cell == nil {
+//            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
+//        }
         
         let user : NSDictionary = self.users[indexPath.row] as NSDictionary
         
-        cell?.textLabel?.text = user["login"] as NSString
-        cell?.detailTextLabel?.text =  user["html_url"] as NSString
+        cell.textLabel?.text = user["login"] as NSString
+        cell.detailTextLabel?.text =  user["html_url"] as NSString
         
         let avatar = user["avatar_url"] as NSString
         let avatarUrl = NSURL(string:avatar)
-        
-        
 
-        cell?.imageView?.frame = CGRectMake(0, 0, 100, 100)
-        cell?.imageView?.image = UIImage(named:"placeholder")
-        //        cell?.imageView?.hnk_setImageFromURL(avatarUrl!)
-
-        cell?.imageView?.hnk_setImageFromURL(avatarUrl!, placeholder: UIImage(named:"placeholder"), success: { (image) -> () in
+        cell.imageView?.frame = CGRectMake(0, 0, 100, 100)
+        cell.imageView?.image = UIImage(named:"placeholder")
+        
+        cell.imageView?.hnk_setImageFromURL(avatarUrl!, placeholder: UIImage(named:"placeholder"), success: { (image) -> () in
             let avatarImg = image
-            cell?.imageView?.image = avatarImg
+            cell.imageView?.image = avatarImg
         })
         
 //        self.downloadAvatar(avatar, index:indexPath.row, completion: { (index ,image) -> Void in
@@ -96,7 +93,7 @@ class ViewController: UIViewController, UITableViewDelegate {
 //            }
 //        })
         
-        return cell!
+        return cell
     }
     
     
@@ -114,7 +111,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
     }
 
-    
 }
 
 

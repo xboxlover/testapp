@@ -485,6 +485,7 @@
 				EB57836A1AC4B683009EEC57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB57836B1AC4B683009EEC57 /* Build configuration list for PBXNativeTarget "testappTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +494,7 @@
 				EB57836D1AC4B683009EEC57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
